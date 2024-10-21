@@ -1,3 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def index(request):
+    message = request.session.pop('message', None)
+    return render(request, 'core/index.html', {'message': message})
