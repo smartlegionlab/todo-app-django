@@ -35,6 +35,7 @@
                                 {{ request.user.email }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{% url "tasks:tasks" %}">My Tasks</a></li>
                                 <li><a class="dropdown-item" href="{% url "profiles:profile" %}">Profile</a></li>
                                 <li><a class="dropdown-item" href="{% url "profiles:logout" %}">Exit</a></li>
                             </ul>
