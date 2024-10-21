@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from profiles.forms import ProfileSettingsForm, ProfilePasswordChangeForm
+from profiles.forms import ProfileSettingsForm, ProfilePasswordChangeForm, SignUpForm
 from profiles.models import Profile
 
 
@@ -104,3 +104,36 @@ def change_password(request):
         'form': form
     }
     return render(request, 'profiles/change_password.html', context)
+
+
+def register(request):
+    if request.user.is_authenticated:
+        return redirect('profiles:profile')
+    message = request.session.pop('message', None)
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            new_user = form.save(commit=False)
+            new_user.set_password(form.cleaned_data['password'])
+            new_user.save()
+            profile = Profile.objects.get(id=new_user.id)
+            profile.save()
+            message = {
+                'type': 'success',
+                'text': f'You successfully registered in system!'
+            }
+            request.session['message'] = message
+            return redirect('profiles:login')
+        else:
+            message = {
+                'type': 'danger',
+                'text': f'Error! User like this E-mail already registered in system.'
+            }
+            request.session['message'] = message
+    else:
+        form = SignUpForm
+    context = {
+        'form': form,
+        'message': message
+    }
+    return render(request, 'profiles/register.html', context)
