@@ -18,9 +18,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url "core:index" %}">
                 {% if app_setting is None %}Smart ToDo App{% else %}{{ app_setting.name }}{% endif %}
-                {% if request.user.is_superuser %}
                     <sup class="text-success">{{ request.user.tasks.count }}</sup>
-                {% endif %}
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
