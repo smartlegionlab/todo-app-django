@@ -3,7 +3,7 @@
 {% block title %}My Tasks{% endblock %}
 
 {% block content %}
-    <h1 class="display-6 text-center">ToDo list <sup>{{ tasks.count }}</sup></h1>
+    <h1 class="display-6 text-center">ToDo list <i class="bi bi-list-task"></i><sup>{{ tasks.count }}</sup></h1>
     <hr>
     <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-success">+ Add task</button>
@@ -41,10 +41,10 @@
             <td>{{ task.title }}</td>
             <td>{{ task.description|linebreaks|urlize }}</td>
             <td style="width: 250px">
-                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-dark">View task</button>
-                    <button type="button" class="btn btn-warning">Update</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button data-bs-toggle="tooltip" data-bs-placement="top" title="View task" type="button" class="btn btn-dark"><i class="bi bi-search"></i></button>
+                    <button data-bs-toggle="tooltip" data-bs-placement="top" title="Changing a task" type="button" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></button>
+                    <button data-bs-toggle="tooltip" data-bs-placement="top" title="Deleting a task" type="button" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
                 </div>
             </td>
         </tr>
