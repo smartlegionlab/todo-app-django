@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile Settings{% endblock %}
+
+{% block content %}
+    <h1 class="text-center display-6">Profile Settings</h1>
+    <hr>
+    <a href="{% url "profiles:profile" %}" type="submit" class="btn btn-dark"><i class="bi bi-arrow-left-short"></i> Back</a>
+    <hr>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Save</button>
+    </form>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $('#id_email, #id_first_name, #id_last_name, #id_telegram_id').addClass('form-control');
+    </script>
+{% endblock %}

@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
+from profiles.forms import ProfileSettingsForm, ProfilePasswordChangeForm
 from profiles.models import Profile
 
 
@@ -68,3 +69,38 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('profiles:login')
+
+
+@login_required
+def profile_settings(request):
+    profile = Profile.objects.get(pk=request.user.id)
+    form = ProfileSettingsForm(request.POST or None, instance=profile)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            message = {
+                'type': 'success',
+                'text': f'Your profile has been successfully modified!',
+            }
+            request.session['message'] = message
+            return redirect('profiles:profile')
+    context = {
+        'form': form,
+        'profile': profile,
+    }
+    return render(request, 'profiles/profile_settings.html', context)
+
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = ProfilePasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('profiles:profile')
+    else:
+        form = ProfilePasswordChangeForm(user=request.user)
+    context = {
+        'form': form
+    }
+    return render(request, 'profiles/change_password.html', context)

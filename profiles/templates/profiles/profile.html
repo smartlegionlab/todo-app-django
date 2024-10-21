@@ -14,8 +14,8 @@
     <h1 class="display-4 text-center">{{ user.email }}</h1>
     <hr>
     <div class="btn-group" role="group" aria-label="Basic example">
-        <a href='#' class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Settings"><i class="bi bi-gear"></i> Settings</a>
-        <a href='#' class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Change password"><i class="bi bi-lock-fill"></i> Change password</a>
+        <a href='{% url "profiles:profile_settings" %}' class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Settings"><i class="bi bi-gear"></i> Settings</a>
+        <a href='{% url "profiles:change_password" %}' class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Change password"><i class="bi bi-lock-fill"></i> Change password</a>
     </div>
     <hr>
     <ul class="list-group">
@@ -35,5 +35,6 @@
             </svg></span>{% endif %}</li>
         <li class="list-group-item" aria-current="true"><strong>Last login:</strong> <span>{{ user.last_login|date:"d.m.Y H:i:s" }}</span></li>
         <li class="list-group-item" aria-current="true"><strong>Account created:</strong> <span>{{ user.created_at|date:"d.m.Y" }}</span></li>
+        <li class="list-group-item" aria-current="true"><strong>Account updated:</strong> <span>{{ user.updated_at|date:"d.m.Y H:i:s" }}</span></li>
     </ul>
 {% endblock %}
