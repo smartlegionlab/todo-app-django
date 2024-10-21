@@ -1,1 +1,39 @@
-User profile
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+    <style>
+    span {
+        color: midnightblue;
+        font-style: italic;
+    }
+    </style>
+
+    <h1 class="display-4 text-center">{{ user.email }}</h1>
+    <hr>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a href='#' class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Settings"><i class="bi bi-gear"></i> Settings</a>
+        <a href='#' class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Change password"><i class="bi bi-lock-fill"></i> Change password</a>
+    </div>
+    <hr>
+    <ul class="list-group">
+        <li class="list-group-item" aria-current="true"><strong>Name:</strong> <span>{{ user.first_name }}</span></li>
+        <li class="list-group-item" aria-current="true"><strong>Surname:</strong> <span>{{ user.last_name }}</span></li>
+        <li class="list-group-item" aria-current="true"><strong>Main E-mail:</strong> <span>{{ user.email }}</span></li>
+        <li class="list-group-item" aria-current="true"><strong>Telegram ID:</strong> <span>{% if user.telegram_id %}{{ user.telegram_id }}{% else %}No{% endif %}</span></li>
+        <li class="list-group-item" aria-current="true"><strong>Active:</strong> {% if user.is_active %}<span style="color: darkgreen"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg></span>{% else %}<span style="color: red"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+            </svg></span>{% endif %}</li>
+        <li class="list-group-item" aria-current="true"><strong>Super user:</strong> {% if user.is_staff %}<span style="color: darkgreen"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg></span>{% else %}<span style="color: red"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+            </svg></span>{% endif %}</li>
+        <li class="list-group-item" aria-current="true"><strong>Last login:</strong> <span>{{ user.last_login|date:"d.m.Y H:i:s" }}</span></li>
+        <li class="list-group-item" aria-current="true"><strong>Account created:</strong> <span>{{ user.created_at|date:"d.m.Y" }}</span></li>
+    </ul>
+{% endblock %}

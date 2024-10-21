@@ -1,1 +1,21 @@
-Welcome!
+{% extends 'base.html' %}
+
+{% block title %}Smart Crypto Bot{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">{% if app_setting is None %}Smart ToDO App{% else %}{{ app_setting.name }}{% endif %}</h1>
+            <hr class="my-4">
+            <p class="lead">{% if app_setting is None %}Your smart task manager{% else %}{{ app_setting.description }}{% endif %}</p>
+            <hr>
+            <p class="text-center lead">Created by: <a style="text-decoration: none" target="_blank" href="https://github.com/smartlegionlab/">Smart Legion <sup>Lab</sup></a></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+
+    </script>
+{% endblock %}
