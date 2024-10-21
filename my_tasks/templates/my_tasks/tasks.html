@@ -30,9 +30,8 @@
                 {% if task.completed %}
                     <i class="bi bi-check-circle text-success" style="font-size: 24px;"></i>
                 {% else %}
-                    <i class="bi bi-exclamation-circle text-danger" style="font-size: 24px;"></i>
+                    <i class="bi bi-hourglass-split text-warning" style="font-size: 24px;"></i>
                 {% endif %}</td>
-{#            <td style="width: 50px">{% if task.priority == "HIGH" %}<i class="bi bi-exclamation-circle" style="color: #dc3545; font-size: 24px;"></i>{% elif task.priority == "LOW" %}<i class="bi bi-check-circle" style="color: #28a745; font-size: 24px;"></i>{% else %}<i class="bi bi-exclamation-triangle" style="color: #ffc107; font-size: 24px;"></i>{% endif %}</td>#}
             <td style="width: 50px;" class="text-{% if task.priority == "HIGH" %}danger{% elif task.priority == "LOW" %}success{% else %}warning{% endif %}">{{ task.priority }}</td>
             <td>{{ task.title }}</td>
             <td>{{ task.description|linebreaks|urlize }}</td>
