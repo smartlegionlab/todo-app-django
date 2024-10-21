@@ -35,7 +35,7 @@
                                 {{ request.user.email }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{% url "tasks:tasks" %}">My Tasks</a></li>
+                                <li><a class="dropdown-item" href="{% url "tasks:tasks" %}">My Tasks <sup>{{ request.user.tasks.count }}</sup></a></li>
                                 <li><a class="dropdown-item" href="{% url "profiles:profile" %}">Profile</a></li>
                                 {% if request.user.is_superuser %}
                                     <li><a class="dropdown-item" href="{% url "admin:index" %}">Admin</a></li>
