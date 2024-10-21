@@ -38,8 +38,8 @@
                     </svg>
 
                 {% endif %}</td>
-            <td>{{ task.name }}</td>
-            <td>{{ task.description }}</td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description|linebreaks|urlize }}</td>
             <td style="width: 250px">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-dark">View task</button>
