@@ -52,3 +52,19 @@ def update_task(request, pk):
         form = TaskForm(instance=task)
 
     return render(request, 'my_tasks/task_form.html', {'form': form})
+
+
+@login_required
+def delete_task(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    try:
+        if task.profile != request.user:
+            raise Exception("Task not found...")
+        task.delete()
+    except Exception as e:
+        print(e)
+        message = {'type': 'danger', 'text': f'WARNING! Error deleting task! {e}'}
+    else:
+        message = {'type': 'success', 'text': 'Task deleted!'}
+    request.session['message'] = message
+    return redirect('tasks:tasks')
