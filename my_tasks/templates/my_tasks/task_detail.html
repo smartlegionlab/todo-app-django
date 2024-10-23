@@ -20,9 +20,9 @@
         <a href="{% url "tasks:task_update" task.pk %}" class="btn btn-primary"><i class="bi bi-pencil-fill"></i> Edit</a>
         <a onclick="return confirm('Are you sure?')" href="{% url "tasks:task_delete" task.pk %}" class="btn btn-danger"><i class="bi bi-trash-fill"></i> Delete</a>
         {% if task.completed %}
-            <a onclick="return confirm('Are you sure?')" href="#" class="btn btn-warning"><i class="bi bi-hourglass-split"></i> Mark as not complete</a>
+            <a onclick="return confirm('Are you sure?')" href="{% url "tasks:toggle_task_completion" task.pk %}" class="btn btn-warning"><i class="bi bi-hourglass-split"></i> Mark as not complete</a>
         {% else %}
-            <a onclick="return confirm('Are you sure?')" href="#" class="btn btn-success"><i class="bi bi-check2-circle"></i> Mark as complete</a>
+            <a onclick="return confirm('Are you sure?')" href="{% url "tasks:toggle_task_completion" task.pk %}" class="btn btn-success"><i class="bi bi-check2-circle"></i> Mark as complete</a>
         {% endif %}
     </div>
     <hr>

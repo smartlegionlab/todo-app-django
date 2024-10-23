@@ -40,6 +40,11 @@
                     <a href="{% url "tasks:task_detail" task.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="View task" type="button" class="btn btn-dark"><i class="bi bi-search"></i></a>
                     <a href="{% url "tasks:task_update" task.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Changing a task" type="button" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></a>
                     <a onclick="return confirm('Are you sure?')" href="{% url "tasks:task_delete" task.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Deleting a task" type="button" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
+                    {% if task.completed %}
+                        <a onclick="return confirm('Are you sure?')" href="{% url "tasks:toggle_task_completion" task.pk %}" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as not complete"><i class="bi bi-hourglass-split"></i></a>
+                    {% else %}
+                        <a onclick="return confirm('Are you sure?')" href="{% url "tasks:toggle_task_completion" task.pk %}" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as complete"><i class="bi bi-check2-circle"></i></a>
+                    {% endif %}
                 </div>
             </td>
         </tr>

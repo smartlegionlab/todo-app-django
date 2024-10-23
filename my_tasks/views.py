@@ -74,3 +74,19 @@ def task_detail(request, pk):
     task = get_object_or_404(Task, pk=pk)
     context = {'task': task}
     return render(request, 'my_tasks/task_detail.html', context)
+
+
+@login_required
+@task_owner_required
+def toggle_task_completion(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.toggle_completion()
+    if task.completed:
+        text = 'The task has been successfully marked as completed.!'
+        type_ = 'success'
+    else:
+        text = 'The task is marked as NOT completed!'
+        type_ = 'warning'
+    message = {'type': type_, 'text': text}
+    request.session['message'] = message
+    return redirect('tasks:tasks')

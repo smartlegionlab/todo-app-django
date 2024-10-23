@@ -25,6 +25,18 @@ class Task(models.Model):
         default=Priority.MEDIUM.name,
     )
 
+    def toggle_completion(self):
+        self.completed = not self.completed
+        self.save()
+
+    def mark_completed(self):
+        self.completed = True
+        self.save()
+
+    def mark_incomplete(self):
+        self.completed = False
+        self.save()
+
     def __str__(self):
         return self.title
 
