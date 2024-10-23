@@ -2,10 +2,9 @@
 
 ---
 
-![GitHub top language](https://img.shields.io/github/languages/top/smartlegionlab/todo_app_web_django)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/smartlegionlab/todo_app_web_django)](https://github.com/smartlegionlab/todo_app_web_django/)
+![GitHub top language](https://img.shields.io/github/languages/top/smartlegionlab/todo_app_web_django)
 [![GitHub](https://img.shields.io/github/license/smartlegionlab/todo_app_web_django)](https://github.com/smartlegionlab/todo_app_web_django/blob/master/LICENSE)
-[![PyPI - Format](https://img.shields.io/pypi/format/todo_app_web_django)](https://pypi.org/project/todo_app_web_django)
 
 ---
 
