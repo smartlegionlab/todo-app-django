@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
+from my_tasks.decorators import task_owner_required
 from my_tasks.forms import TaskForm
 from my_tasks.models import Task
 
@@ -36,11 +37,9 @@ def create_task(request):
 
 
 @login_required
+@task_owner_required
 def update_task(request, pk):
     task = get_object_or_404(Task, pk=pk)
-    if task.profile != request.user:
-        return HttpResponseForbidden("You are not allowed to edit this task.")
-
     if request.method == 'POST':
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
@@ -55,16 +54,15 @@ def update_task(request, pk):
 
 
 @login_required
+@task_owner_required
 def delete_task(request, pk):
     task = get_object_or_404(Task, pk=pk)
     try:
-        if task.profile != request.user:
-            raise Exception("Task not found...")
         task.delete()
     except Exception as e:
         print(e)
-        message = {'type': 'danger', 'text': f'WARNING! Error deleting task! {e}'}
+        message = {'type': 'danger', 'text': f'WARNING! Error deleting task "{task.title}"! {e}'}
     else:
-        message = {'type': 'success', 'text': 'Task deleted!'}
+        message = {'type': 'success', 'text': f'Task "{task.title}" deleted!'}
     request.session['message'] = message
     return redirect('tasks:tasks')
