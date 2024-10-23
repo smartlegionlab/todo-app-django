@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Task: {{ task.title }}{% endblock %}
+
+{% block content %}
+    <h2 class="text-center display-6">{{ task.title }} <sup>{% if task.completed %} <i class="bi bi-check-circle text-success" style="font-size: 24px;"></i>{% else %}<i class="bi bi-hourglass-split text-warning" style="font-size: 24px;"></i>{% endif %}</sup></h2>
+    <hr>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Status</strong>: {% if task.completed %}<span class="text-success">Completed</span>{% else %}<span class="text-danger">Not completed</span>{% endif %}</li>
+        <li class="list-group-item"><strong>Description</strong>: <span>{{ task.description }}</span></li>
+        {% if task.due_date %}
+            <li class="list-group-item"><strong>Due date</strong>: <span>{{ task.due_date|date:"d.m.Y H:i:s" }}</span></li>
+        {% endif %}
+        <li class="list-group-item"><strong>Created date</strong>: <span>{{ task.created_at|date:"d.m.Y H:i:s" }}</span></li>
+        <li class="list-group-item"><strong>Updated date</strong>: <span>{{ task.updated_at|date:"d.m.Y H:i:s" }}</span></li>
+    </ul>
+    <hr>
+    <div class="btn-group">
+        <a href="{% url "tasks:tasks" %}" class="btn btn-dark"><i class="bi bi-arrow-left"></i> Back</a>
+        <a href="{% url "tasks:task_update" task.pk %}" class="btn btn-primary"><i class="bi bi-pencil-fill"></i> Edit</a>
+        <a onclick="return confirm('Are you sure?')" href="{% url "tasks:task_delete" task.pk %}" class="btn btn-danger"><i class="bi bi-trash-fill"></i> Delete</a>
+        {% if task.completed %}
+            <a onclick="return confirm('Are you sure?')" href="#" class="btn btn-warning"><i class="bi bi-hourglass-split"></i> Mark as not complete</a>
+        {% else %}
+            <a onclick="return confirm('Are you sure?')" href="#" class="btn btn-success"><i class="bi bi-check2-circle"></i> Mark as complete</a>
+        {% endif %}
+    </div>
+    <hr>
+{% endblock %}
+{% block js %}
+    <script>
+    $( document ).ready(function() {
+        $('span').addClass('lead');
+    });
+    </script>
+{% endblock %}

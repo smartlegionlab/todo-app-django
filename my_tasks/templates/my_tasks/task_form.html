@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
+{% block title %}{% if object %}Edit Task{% else %}Create Task{% endif %}{% endblock %}
+
 {% block content %}
-  <h2>{% if object %}Edit Task{% else %}Create Task{% endif %}</h2>
+  <h2 class="text-center display-6">{% if object %}Edit Task{% else %}Create Task{% endif %}</h2>
+    <hr>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

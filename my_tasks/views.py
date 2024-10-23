@@ -66,3 +66,11 @@ def delete_task(request, pk):
         message = {'type': 'success', 'text': f'Task "{task.title}" deleted!'}
     request.session['message'] = message
     return redirect('tasks:tasks')
+
+
+@login_required
+@task_owner_required
+def task_detail(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    context = {'task': task}
+    return render(request, 'my_tasks/task_detail.html', context)

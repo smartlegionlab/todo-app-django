@@ -11,7 +11,7 @@ class Priority(Enum):
 
 
 class Task(models.Model):
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True, default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
