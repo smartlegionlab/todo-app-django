@@ -11,7 +11,7 @@
     <br>
     <br>
     <div class="table-responsive">
-        <table class="table table-hover table-bordered">
+        <table id="Tasks" class="table table-hover table-bordered">
         <thead>
         <tr class="table-primary">
             <th scope="col">#</th>
@@ -47,4 +47,37 @@
         </tbody>
     </table>
     </div>
+{% endblock %}
+{% block js %}
+    <script>
+    $(document).ready(function() {
+            $('#Tasks').DataTable({
+                language: {
+                    "decimal":        ",",
+                    "emptyTable":     "No data in table",
+                    "info":           "Showing _START_ to _END_ of _TOTAL_ records",
+                    "infoEmpty":      "Showing 0 to 0 of 0 entries",
+                    "infoFiltered":   "(filtered from _MAX_ records)",
+                    "infoPostFix":    "",
+                    "thousands":      ".",
+                    "lengthMenu":     "Show _MENU_ entries",
+                    "loadingRecords": "Loading...",
+                    "processing":     "Processing...",
+                    "search":         "Search:",
+                    "zeroRecords":    "No records found",
+                    "paginate": {
+                        "first":      "First",
+                        "last":       "The last one",
+                        "next":       "Next",
+                        "previous":   "Previous"
+                    },
+                    "aria": {
+                        "sortAscending":  ": activate to sort the column in ascending order",
+                        "sortDescending": ": activate to sort the column in descending order"
+                    }
+                }
+            });
+
+        });
+    </script>
 {% endblock %}
