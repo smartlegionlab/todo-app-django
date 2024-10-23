@@ -17,7 +17,7 @@ class Task(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     due_date = models.DateTimeField(null=True, blank=True)
     completed = models.BooleanField(default=False)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='tasks')
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='tasks', null=True, blank=True)
 
     priority = models.CharField(
         max_length=10,

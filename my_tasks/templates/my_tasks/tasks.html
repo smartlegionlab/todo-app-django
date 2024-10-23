@@ -6,7 +6,7 @@
     <h1 class="display-6 text-center">ToDo list <i class="bi bi-list-task text-success"></i><sup>{{ tasks.count }}</sup></h1>
     <hr>
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-success">+ Add</button>
+        <a href="{% url "tasks:task_create" %}" type="button" class="btn btn-success">+ Add</a>
     </div>
     <br>
     <br>
@@ -38,7 +38,7 @@
             <td style="width: 250px">
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button data-bs-toggle="tooltip" data-bs-placement="top" title="View task" type="button" class="btn btn-dark"><i class="bi bi-search"></i></button>
-                    <button data-bs-toggle="tooltip" data-bs-placement="top" title="Changing a task" type="button" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></button>
+                    <a href="{% url "tasks:task_update" task.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Changing a task" type="button" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></a>
                     <button data-bs-toggle="tooltip" data-bs-placement="top" title="Deleting a task" type="button" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
                 </div>
             </td>
