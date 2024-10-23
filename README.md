@@ -2,6 +2,13 @@
 
 ---
 
+![GitHub top language](https://img.shields.io/github/languages/top/smartlegionlab/todo_app_web_django)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/smartlegionlab/todo_app_web_django)](https://github.com/smartlegionlab/todo_app_web_django/)
+[![GitHub](https://img.shields.io/github/license/smartlegionlab/todo_app_web_django)](https://github.com/smartlegionlab/todo_app_web_django/blob/master/LICENSE)
+[![PyPI - Format](https://img.shields.io/pypi/format/todo_app_web_django)](https://pypi.org/project/todo_app_web_django)
+
+---
+
 **TODO App** is a web application developed using the Django framework that allows users to efficiently manage their tasks. The application provides an intuitive interface for creating, editing, and deleting tasks, as well as tracking their status.
 
 #### Key Features:
@@ -63,7 +70,13 @@ TODO_APP_WEB_DB_HOST="localhost"
 - `python manage migrate`
 - `python manage createsuperuser`
 - `python manage.py runserver`
-- Open in browser [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- Open in browser [link](http://127.0.0.1:8000)
+
+---
+
+## Images:
+
+![logo](https://github.com/smartlegionlab/todo_app_web_django/raw/master/data/images/logo.png)
 
 ---
 

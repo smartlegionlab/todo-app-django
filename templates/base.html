@@ -28,7 +28,10 @@
                     {% if request.user.is_authenticated %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="true">
-                                {{ request.user.email }}
+                                {% with email=request.user.email %}
+                                    {{ email|slice:":2" }}**@**{{ email|slice:"-2:" }}
+                                {% endwith %}
+
                             </a>
                             <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="{% url "tasks:tasks" %}">My Tasks <sup class="text-success">{{ request.user.tasks.count }}</sup></a></li>
