@@ -27,15 +27,17 @@ class ProfilePasswordChangeForm(PasswordChangeForm):
 
 
 class SignUpForm(forms.ModelForm):
-    password = forms.CharField(max_length=255)
-    password_2 = forms.CharField(max_length=255)
+    password = forms.CharField(widget=forms.PasswordInput)
+    password_confirm = forms.CharField(widget=forms.PasswordInput, label='Confirm Password')
 
     class Meta:
         model = Profile
-        fields = ['email', 'first_name', 'last_name', 'telegram_id']
+        fields = ['email', 'first_name', 'last_name', 'telegram_id', 'password', 'password_confirm']
 
-    def clean_password_2(self):
-        cd = self.cleaned_data
-        if cd['password'] != cd['password_2']:
-            raise forms.ValidationError('Passwords dont\' match!')
-        return cd['password_2']
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        password_confirm = cleaned_data.get("password_confirm")
+
+        if password and password_confirm and password != password_confirm:
+            raise forms.ValidationError("Passwords do not match.")

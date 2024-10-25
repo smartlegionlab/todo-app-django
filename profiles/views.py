@@ -107,17 +107,13 @@ def change_password(request):
 
 
 def register(request):
-    if request.user.is_authenticated:
-        return redirect('profiles:profile')
     message = request.session.pop('message', None)
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            new_user = form.save(commit=False)
-            new_user.set_password(form.cleaned_data['password'])
-            new_user.save()
-            profile = Profile.objects.get(id=new_user.id)
-            profile.save()
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
             message = {
                 'type': 'success',
                 'text': f'You successfully registered in system!'
@@ -132,8 +128,10 @@ def register(request):
             request.session['message'] = message
     else:
         form = SignUpForm()
+
     context = {
         'form': form,
         'message': message
     }
+
     return render(request, 'profiles/register.html', context)
