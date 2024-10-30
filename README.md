@@ -74,8 +74,8 @@ TODO_APP_WEB_DB_HOST="localhost"
 
 ## Run:
 
-- `python manage migrate`
-- `python manage createsuperuser`
+- `python manage.py migrate`
+- `python manage.py createsuperuser`
 - `python manage.py runserver`
 - Open in browser [link](http://127.0.0.1:8000)
 
