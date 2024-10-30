@@ -43,7 +43,7 @@ TODO App on Django is the perfect solution for those looking to organize their t
 - `sudo mysql -u root -p`
 
 - `CREATE USER 'USER_NAME'@'localhost' IDENTIFIED BY 'PASSWORD';`
-- `CREATE DATABASE database_name CHARACTER SET utf8 COLLATE utf8_general_ci;`
+- `CREATE DATABASE database_name CHARACTER SET utf8 COLLATE utf8_general_ci;` or `CREATE DATABASE database_name CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;`
 - `GRANT ALL PRIVILEGES ON database_name.* TO 'USER_NAME'@'localhost';`
 - `FLUSH PRIVILEGES;`
 - `exit`
