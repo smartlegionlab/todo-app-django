@@ -25,7 +25,7 @@ def create_task(request):
             task = form.save(commit=False)
             task.profile = request.user
             task.save()
-            messages.success(request, 'Task successfully created')
+            messages.success(request, 'Task successfully created!')
             return redirect('tasks:tasks')
     else:
         form = TaskForm()
@@ -40,7 +40,7 @@ def update_task(request, pk):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Task successfully updated')
+            messages.success(request, 'Task successfully updated!')
             return redirect('tasks:tasks')
     else:
         form = TaskForm(instance=task)
@@ -58,7 +58,7 @@ def delete_task(request, pk):
         print(e)
         messages.error(request, f'WARNING! Error deleting task!')
     else:
-        messages.success(request, 'Task successfully deleted')
+        messages.success(request, 'Task successfully deleted!')
     return redirect('tasks:tasks')
 
 
