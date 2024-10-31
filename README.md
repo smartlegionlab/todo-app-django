@@ -22,6 +22,15 @@ TODO App on Django is the perfect solution for those looking to organize their t
 
 ---
 
+## Soon:
+
+- Subtasks for tasks
+- Comments for tasks
+- Transferring tasks to archive
+- Events
+
+---
+
 ## Other applications:
 
 - [Console ToDo app](https://github.com/smartlegionlab/todo_app_cli/)
