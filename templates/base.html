@@ -55,11 +55,13 @@
         </div>
     </nav>
     <div class="container-fluid" style="margin: 70px 0 50px 0">
-        {% if message %}
-            <div class="alert alert-{{ message.type }} alert-dismissible fade show" role="alert">
-                {{ message.text }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{% if message.tags != "error" %}{{ message.tags }}{% else %}danger{% endif %} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
         {% endif %}
     {% block content %}
     {% endblock %}

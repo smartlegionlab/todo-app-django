@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -8,16 +9,10 @@ from profiles.models import Profile
 
 @login_required
 def user_profile(request):
-    message = request.session.pop('message', None)
-    context = {
-        'message': message,
-    }
-    return render(request, 'profiles/profile.html', context)
+    return render(request, 'profiles/profile.html')
 
 
 def login_view(request):
-    message = request.session.pop('message', None)
-
     if request.user.is_authenticated:
         return redirect('profiles:profile')
 
@@ -26,44 +21,25 @@ def login_view(request):
         password = request.POST.get('password')
 
         if not email or not password:
-            message = {
-                'type': 'danger',
-                'text': 'Email and password are required.',
-            }
-            return render(request, 'profiles/login.html', {'message': message})
+            messages.error(request, 'Email and password are required.')
+            return render(request, 'profiles/login.html')
 
         user = authenticate(request, email=email, password=password)
         profile = Profile.objects.filter(email=email).first()
 
         if profile:
             if not profile.is_active:
-                msg = f'Your account is blocked! To unblock, contact the administrator.'
-                message = {
-                    'type': 'danger',
-                    'text': msg
-                }
-                request.session['message'] = message
+                messages.error(request, 'Account is not active.')
                 return redirect('profiles:login')
 
         if user is not None:
             login(request, user)
-            message = {
-                'type': 'success',
-                'text': f'{user.full_name}. Welcome to the - Smart ToDo App.'
-            }
-            request.session['message'] = message
+            messages.success(request, f'{user.full_name}. Welcome to the - Smart ToDo App.')
             return redirect('core:index')
         else:
-            message = {
-                'type': 'danger',
-                'text': 'Incorrect email or password',
-            }
-            return render(request, 'profiles/login.html', {'message': message})
-
-    context = {
-        'message': message
-    }
-    return render(request, 'profiles/login.html', context)
+            messages.error(request, 'Account not found.')
+            return render(request, 'profiles/login.html')
+    return render(request, 'profiles/login.html')
 
 
 def logout_view(request):
@@ -78,11 +54,7 @@ def profile_settings(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            message = {
-                'type': 'success',
-                'text': f'Your profile has been successfully modified!',
-            }
-            request.session['message'] = message
+            messages.success(request, 'Your profile has been updated.')
             return redirect('profiles:profile')
     context = {
         'form': form,
@@ -107,31 +79,21 @@ def change_password(request):
 
 
 def register(request):
-    message = request.session.pop('message', None)
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
-            message = {
-                'type': 'success',
-                'text': f'You successfully registered in system!'
-            }
-            request.session['message'] = message
+            messages.success(request, 'Your account has been created.')
             return redirect('profiles:login')
         else:
-            message = {
-                'type': 'danger',
-                'text': f'Error! User like this E-mail already registered in system.'
-            }
-            request.session['message'] = message
+            messages.error(request, 'Error! User like this E-mail already registered in system!')
     else:
         form = SignUpForm()
 
     context = {
         'form': form,
-        'message': message
     }
 
     return render(request, 'profiles/register.html', context)

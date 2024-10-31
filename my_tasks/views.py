@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404, redirect
@@ -11,9 +12,8 @@ from my_tasks.models import Task
 
 @login_required
 def tasks(request):
-    message = request.session.pop('message', None)
     task_list = Task.objects.filter(profile_id=request.user.id)
-    context = {'tasks': task_list, 'message': message}
+    context = {'tasks': task_list}
     return render(request, "my_tasks/tasks.html", context)
 
 
@@ -25,11 +25,7 @@ def create_task(request):
             task = form.save(commit=False)
             task.profile = request.user
             task.save()
-            message = {
-                'type': 'success',
-                'text': 'Task created!',
-            }
-            request.session['message'] = message
+            messages.success(request, 'Task successfully created')
             return redirect('tasks:tasks')
     else:
         form = TaskForm()
@@ -44,8 +40,7 @@ def update_task(request, pk):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
-            message = {'type': 'success', 'text': 'Task updated!'}
-            request.session['message'] = message
+            messages.success(request, 'Task successfully updated')
             return redirect('tasks:tasks')
     else:
         form = TaskForm(instance=task)
@@ -61,10 +56,9 @@ def delete_task(request, pk):
         task.delete()
     except Exception as e:
         print(e)
-        message = {'type': 'danger', 'text': f'WARNING! Error deleting task "{task.title}"! {e}'}
+        messages.error(request, f'WARNING! Error deleting task!')
     else:
-        message = {'type': 'success', 'text': f'Task "{task.title}" deleted!'}
-    request.session['message'] = message
+        messages.success(request, 'Task successfully deleted')
     return redirect('tasks:tasks')
 
 
@@ -83,10 +77,8 @@ def toggle_task_completion(request, pk):
     task.toggle_completion()
     if task.completed:
         text = 'The task has been successfully marked as completed.!'
-        type_ = 'success'
+        messages.success(request, text)
     else:
         text = 'The task is marked as NOT completed!'
-        type_ = 'warning'
-    message = {'type': type_, 'text': text}
-    request.session['message'] = message
+        messages.error(request, text)
     return redirect('tasks:tasks')
