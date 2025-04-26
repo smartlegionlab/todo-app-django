@@ -1,10 +1,10 @@
-# ToDo App Web (Django)
+# ToDo App (Django) <sup>v0.0.3</sup>
 
 ---
 
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/smartlegionlab/todo_app_web_django)](https://github.com/smartlegionlab/todo_app_web_django/)
-![GitHub top language](https://img.shields.io/github/languages/top/smartlegionlab/todo_app_web_django)
-[![GitHub](https://img.shields.io/github/license/smartlegionlab/todo_app_web_django)](https://github.com/smartlegionlab/todo_app_web_django/blob/master/LICENSE)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/smartlegionlab/todo-app-django)](https://github.com/smartlegionlab/todo-app-django/)
+![GitHub top language](https://img.shields.io/github/languages/top/smartlegionlab/todo-app-django)
+[![GitHub](https://img.shields.io/github/license/smartlegionlab/todo-app-django)](https://github.com/smartlegionlab/todo-app-django/blob/master/LICENSE)
 
 ---
 
@@ -92,7 +92,7 @@ TODO_APP_WEB_DB_HOST="localhost"
 
 ## Images:
 
-![logo](https://github.com/smartlegionlab/todo_app_web_django/raw/master/data/images/logo.png)
+![logo](https://github.com/smartlegionlab/todo-app-django/raw/master/data/images/logo.png)
 
 ---
 
