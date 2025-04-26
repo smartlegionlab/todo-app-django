@@ -33,9 +33,9 @@ TODO App on Django is the perfect solution for those looking to organize their t
 
 ## Other applications:
 
-- [Console ToDo app](https://github.com/smartlegionlab/todo_app_cli/)
-- [Desktop ToDo app](https://github.com/smartlegionlab/todo_app_desktop/)
-- [Telegram bot - ToDo app](https://github.com/smartlegionlab/todo_app_tg_bot/) | [Use](https://t.me/smarttodoappbot)
+- [Console ToDo app](https://github.com/smartlegionlab/todo-app-cli/)
+- [Desktop ToDo app](https://github.com/smartlegionlab/smart-todo-app-desktop/)
+- [Telegram bot - ToDo app](https://github.com/smartlegionlab/todo-app-tg-bot/) | [Use](https://t.me/smarttodoappbot)
 
 ---
 
